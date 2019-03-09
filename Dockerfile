@@ -15,9 +15,9 @@ RUN set -xe \
 
 ADD entrypoint.sh /entrypoint.sh
 
-VOLUME /etc/openconnect
+ADD openconnect.conf /openconnect.conf
 
 EXPOSE 1080
 
-ENTRYPOINT ["/entrypoint.sh", "--config=/etc/openconnect/openconnect.conf"]
+ENTRYPOINT ["/entrypoint.sh", "--config=/openconnect.conf"]
 CMD ["--help"]
