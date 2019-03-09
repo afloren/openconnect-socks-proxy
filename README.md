@@ -9,4 +9,5 @@ The service runs inside a docker container in order to isolate the network traff
 
 The service can be started by running the following command:
 > docker-compose run --service-ports openconnect-socks-proxy vpn.example.com
+
 where `vpn.example.com` should be replaced by your desired VPN host.
