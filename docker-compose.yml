@@ -1,0 +1,11 @@
+version: '3'
+services:
+  openconnect-socks-proxy:
+    build: .
+    ports:
+     - "1080:1080"
+    privileged: true
+    cap_add:
+     - NET_ADMIN
+    
+     
