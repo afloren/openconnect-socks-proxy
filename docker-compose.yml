@@ -9,5 +9,3 @@ services:
     privileged: true
     cap_add:
      - NET_ADMIN
-    
-     
