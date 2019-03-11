@@ -9,15 +9,16 @@ RUN set -xe \
                --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
                openconnect \
 	       openssh \
-    && sed -i 's/AllowTcpForwarding no/AllowTcpForwarding yes/g' /etc/ssh/sshd_config \
-    && mkdir -p /etc/openconnect \
-    && touch /etc/openconnect/openconnect.conf
+    && sed -i 's/AllowTcpForwarding no/AllowTcpForwarding yes/g' /etc/ssh/sshd_config
 
 ADD entrypoint.sh /entrypoint.sh
 
-ADD openconnect.conf /openconnect.conf
+ADD openconnect.conf /home/openconnect.conf
+
+VOLUME /home
 
 EXPOSE 1080
 
-ENTRYPOINT ["/entrypoint.sh", "--config=/openconnect.conf"]
+WORKDIR /home
+ENTRYPOINT ["/entrypoint.sh", "--config=openconnect.conf"]
 CMD ["--help"]

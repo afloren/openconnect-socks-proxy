@@ -4,6 +4,8 @@ services:
     build: .
     ports:
      - "1080:1080"
+    volumes:
+     - .:/home
     privileged: true
     cap_add:
      - NET_ADMIN
