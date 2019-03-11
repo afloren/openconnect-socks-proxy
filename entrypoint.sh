@@ -9,6 +9,3 @@ ssh-keyscan -H localhost >> ~/.ssh/known_hosts
 ssh -g -f -N -D 1080 localhost
 
 openconnect "$@"
-
-
-
