@@ -13,7 +13,7 @@ RUN set -xe \
 
 ADD entrypoint.sh /entrypoint.sh
 
-ADD openconnect.conf /home/openconnect.conf
+ADD openconnect.conf.template /home/openconnect.conf
 
 VOLUME /home
 
