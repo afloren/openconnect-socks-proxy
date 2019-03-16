@@ -1,6 +1,11 @@
 OpenConnect SOCKS Proxy
 =======================
 
+![Docker Stars](https://img.shields.io/docker/stars/afloren/openconnect-socks-proxy.svg)
+![Docker Pulls](https://img.shields.io/docker/pulls/afloren/openconnect-socks-proxy.svg)
+![Docker Automated](https://img.shields.io/docker/automated/afloren/openconnect-socks-proxy.svg)
+![Docker Build](https://img.shields.io/docker/build/afloren/openconnect-socks-proxy.svg)
+
 A containerized service that connects to a Cisvo AnyConnect VPN and provides access to that VPN via a SOCKS proxy using using [OpenConnect](https://github.com/openconnect) and [ocproxy](https://github.com/cernekee/ocproxy).
 
 This is very useful if you'd like to configure only specific applications or websites (e.g., using the Chrome plugin [Proxy SwitchyOmega](https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif?hl=en)) to use the VPN while allowing the rest of your traffic to go direct or even through another VPN.
