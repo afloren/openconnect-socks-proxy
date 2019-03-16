@@ -20,12 +20,10 @@ RUN set -xe \
     && ./configure \
     && make install
 
-ADD openconnect.conf.template /home/openconnect.conf
-
-VOLUME /home
+ADD openconnect.conf.template /etc/openconnect/openconnect.conf
+VOLUME /etc/openconnect
 
 EXPOSE 1080
 
-WORKDIR /home
-ENTRYPOINT ["openconnect",  "--script-tun", "--script=ocproxy -g -D 1080", "--config=openconnect.conf"]
+ENTRYPOINT ["openconnect",  "--script-tun", "--script=ocproxy -g -D 1080", "--config=/etc/openconnect/openconnect.conf"]
 CMD ["--help"]

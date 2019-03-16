@@ -5,5 +5,5 @@ services:
     ports:
       - '1080:1080'
     volumes:
-      - '.:/home'
+      - '~/.openconnect:/etc/openconnect'
     environment: []
