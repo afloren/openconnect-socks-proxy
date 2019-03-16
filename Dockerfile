@@ -29,7 +29,7 @@ RUN set -xe \
                libevent \
                openconnect
 COPY --from=ocproxy-builder /usr/local/src/ocproxy-1.60/ocproxy /usr/local/bin/ocproxy
-COPY openconnect.conf.template /etc/openconnect.conf
+COPY openconnect.conf /etc/openconnect.conf
 EXPOSE 1080
 ENTRYPOINT ["openconnect",  "--script-tun", "--script=ocproxy -g -D 1080", "--config=/etc/openconnect.conf"]
 CMD ["--help"]
