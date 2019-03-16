@@ -15,4 +15,4 @@ A local docker engine (such as [Docker Desktop](https://www.docker.com/products/
 The service can be started by running the following command:
 > docker run -it -p 1080:1080 afloren/openconnect-socks-proxy vpn.example.com
 
-This will start the SOCKS proxy on port 1080 and prompt the user to authenticate with the VPN at `vpn.example.com`.
+This will start the SOCKS proxy on localhost at port 1080 and prompt the user to authenticate with the VPN at `vpn.example.com`.
