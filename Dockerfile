@@ -1,9 +1,9 @@
 #
-# Dockerfile for openconnect
+# Dockerfile for openconnect-socks-proxy service
 #
 
-FROM alpine:edge
-
+# image to build ocproxy binary
+FROM alpine:edge AS ocproxy-builder
 RUN set -xe \
     && apk add --no-cache \
                --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
@@ -12,18 +12,24 @@ RUN set -xe \
                build-base \
                libevent-dev \
                linux-headers \
-               openconnect \
-    && wget https://github.com/cernekee/ocproxy/archive/v1.60.tar.gz -O ocproxy-v1.60.tar.gz \
-    && tar xzf ocproxy-v1.60.tar.gz \
-    && cd ocproxy-1.60 \
+    && mkdir -p /usr/local/src \
+    && wget -qO- https://github.com/cernekee/ocproxy/archive/v1.60.tar.gz \
+    | tar vxz -C /usr/local/src
+RUN set -xe \
+    && cd /usr/local/src/ocproxy-1.60 \
     && autoreconf --install \
     && ./configure \
-    && make install
+    && make
 
-ADD openconnect.conf.template /etc/openconnect/openconnect.conf
-VOLUME /etc/openconnect
-
+# service image
+FROM alpine:edge
+RUN set -xe \
+    && apk add --no-cache \
+               --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
+               libevent \
+               openconnect
+COPY --from=ocproxy-builder /usr/local/src/ocproxy-1.60/ocproxy /usr/local/bin/ocproxy
+COPY openconnect.conf.template /etc/openconnect.conf
 EXPOSE 1080
-
-ENTRYPOINT ["openconnect",  "--script-tun", "--script=ocproxy -g -D 1080", "--config=/etc/openconnect/openconnect.conf"]
+ENTRYPOINT ["openconnect",  "--script-tun", "--script=ocproxy -g -D 1080", "--config=/etc/openconnect.conf"]
 CMD ["--help"]

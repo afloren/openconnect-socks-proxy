@@ -4,6 +4,5 @@ services:
     build: .
     ports:
       - '1080:1080'
-    volumes:
-      - '~/.openconnect:/etc/openconnect'
-    environment: []
+    # volumes:
+    #  - '~/.openconnect/openconnect.conf:/etc/openconnect.conf'
