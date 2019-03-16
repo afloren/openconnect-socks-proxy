@@ -20,8 +20,6 @@ RUN set -xe \
     && ./configure \
     && make install
 
-ADD entrypoint.sh /entrypoint.sh
-
 ADD openconnect.conf.template /home/openconnect.conf
 
 VOLUME /home
